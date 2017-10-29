@@ -30,16 +30,18 @@ public class Piloto {
             
         }
 
-    public Piloto(int id, String nome, String cpf, String endereco, Date dataNasc,
-            Moto moto,String status) {
+    public Piloto(int id, String nome, 
+            String cpf, String endereco, Date dataNasc, String status, Moto moto) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.endereco = endereco;
         this.dataNasc = dataNasc;
-        this.moto = moto;
         this.status = status;
+        this.moto = moto;
     }
+
+   
 
     public int getId() {
         return id;
