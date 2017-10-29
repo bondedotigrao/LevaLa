@@ -103,7 +103,7 @@ public class MotoHibernate implements MotoInterface {
       List<Moto> lista = new ArrayList();      
       try{
           lista = session.createQuery("from moto").list();
-      }catch(Exception listaTodosPassageirosErro){
+      }catch(Exception listaTodasMotosErro){
           System.out.println("Algo de errado não esta certo");
       }finally{
           session.close();

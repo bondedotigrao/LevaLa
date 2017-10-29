@@ -107,7 +107,7 @@ public class PilotoHibernate implements PilotoInterface {
       List<Piloto> lista = new ArrayList();      
       try{
           lista = session.createQuery("from piloto").list();
-      }catch(Exception listaTodosPassageirosErro){
+      }catch(Exception listaTodosPilotosErro){
           System.out.println("Algo de errado não esta certo");
       }finally{
           session.close();
