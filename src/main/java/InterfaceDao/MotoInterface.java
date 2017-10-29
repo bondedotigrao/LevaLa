@@ -3,9 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package InterfaceDao;
 
+import model.Moto;
 
-public interface PassageiroInterface extends Dao<Passageiro> {
+/**
+ *
+ * @author Adrielly Sales
+ */
+public interface MotoInterface extends Dao<Moto> {
     
 }

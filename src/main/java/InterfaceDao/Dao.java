@@ -1,5 +1,5 @@
 
-package model;
+package InterfaceDao;
 
 import java.util.List;
 

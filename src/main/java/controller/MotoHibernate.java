@@ -4,8 +4,8 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
-import model.Passageiro;
-import InterfaceDao.PassageiroInterface;
+import model.Moto;
+import InterfaceDao.MotoInterface;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -15,46 +15,48 @@ import org.hibernate.cfg.Configuration;
  *
  * @author Adrielly Sales
  */
-public class PassageiroHibernate implements PassageiroInterface {
-    private EntityManager em;
-    private SessionFactory sessions;
-    private static PassageiroHibernate instance =null;
+public class MotoHibernate implements MotoInterface {
     
-    public static PassageiroHibernate getInstance(){
+     private EntityManager em;
+    private SessionFactory sessions;
+    private static MotoHibernate instance =null;
+    
+    public static MotoHibernate getInstance(){
         if(instance == null){
-            instance = new PassageiroHibernate();
+            instance = new MotoHibernate();
         }
         return instance;
-    }
+}
     
-    public PassageiroHibernate(){
+    public MotoHibernate(){
         Configuration cfg = new Configuration().configure();
         this.sessions = cfg.buildSessionFactory();
         
     }
+
     @Override
-    public void cadastrar(Passageiro passageiro) {
-       Session session = this.sessions.openSession();
+    public void cadastrar(Moto moto) {
+        Session session = this.sessions.openSession();
        Transaction t = session.beginTransaction();
        
        try{
-           session.persist(passageiro);
+           session.persist(moto);
            t.commit();
-       }catch(Exception cadastroPassageiroErro){
+       }catch(Exception cadastroMotoErro){
            System.out.println("Algo de errado não está certo");
            t.rollback();
        }finally{
            session.close();
-       }
-    }
+       }  }
 
     @Override
-    public void alterar(Passageiro passageiro) {
-        Session session = this.sessions.openSession();
-        Transaction t = session.beginTransaction();
+    public void alterar(Moto moto) {
+       Session session = this.sessions.openSession();
+       
+       Transaction t = session.beginTransaction();
 
         try {
-            session.update(passageiro);
+            session.update(moto);
             t.commit();
         } catch (Exception e) {
             t.rollback();
@@ -65,12 +67,12 @@ public class PassageiroHibernate implements PassageiroInterface {
     }
 
     @Override
-    public Passageiro recuperar(int codigo) {
+    public Moto recuperar(int codigo) {
         Session session = this.sessions.openSession();
         
         try{
-            return(Passageiro) session.getSession().createQuery("from Passageiro where codigo=" + codigo).getResultList().get(0);
-        }catch(Exception recuperaPassageiroErro){
+            return(Moto) session.getSession().createQuery("from Moto where codigo=" + codigo).getResultList().get(0);
+        }catch(Exception recuperaMotoErro){
             System.out.println("Algo de errado não está certo");
             
         }finally{
@@ -80,35 +82,32 @@ public class PassageiroHibernate implements PassageiroInterface {
     }
 
     @Override
-    public void deletar(Passageiro passageiro) {
-          Session session = this.sessions.openSession();
+    public void deletar(Moto moto) {
+        Session session = this.sessions.openSession();
        Transaction t = session.beginTransaction();
        
        try{
-           session.delete(passageiro);
+           session.delete(moto);
            t.commit();
-       }catch(Exception cadastroPassageiroErro){
+       }catch(Exception cadastroMotoErro){
            System.out.println("Algo de errado não está certo");
            t.rollback();
        }finally{
            session.close();
        }
     }
-    
 
     @Override
-    public List<Passageiro> recuperarTodos() {
-      Session session = this.sessions.openSession();
-      List<Passageiro> lista = new ArrayList();      
+    public List<Moto> recuperarTodos() {
+        Session session = this.sessions.openSession();
+      List<Moto> lista = new ArrayList();      
       try{
-          lista = session.createQuery("from passageiro").list();
+          lista = session.createQuery("from moto").list();
       }catch(Exception listaTodosPassageirosErro){
           System.out.println("Algo de errado não esta certo");
       }finally{
           session.close();
       }
       
-      return lista;
-    }
-    
+      return lista;  }
 }
