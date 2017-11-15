@@ -14,13 +14,13 @@ public class testeMain {
 //        conexaoHibernate.cadastrar(passageiro);
 
         
-//        PilotoHibernate conexaoHibernate = new PilotoHibernate();
+      PilotoHibernate conexaoHibernate = new PilotoHibernate();
 //        
-//        Date data = new Date();
+       Date data = new Date();
 //        
-//        Piloto piloto = new Piloto(1, "Carlos", "123", "Jupi", data, "Ocupado", "azul" );
+    Piloto piloto = new Piloto(1, "Carlos", "123", "Jupi", data, "Ocupado", "azul" );
 //        
-//        conexaoHibernate.cadastrar(piloto);
+        conexaoHibernate.cadastrar(piloto);
 
 
 
