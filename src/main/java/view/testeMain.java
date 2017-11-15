@@ -3,6 +3,7 @@ package view;
 
 import controller.PilotoHibernate;
 import java.util.Date;
+import model.Moto;
 import model.Piloto;
 
 public class testeMain {
@@ -16,10 +17,12 @@ public class testeMain {
         
       PilotoHibernate conexaoHibernate = new PilotoHibernate();
 //        
-       Date data = new Date();
+
 //        
-    Piloto piloto = new Piloto(1, "Carlos", "123", "Jupi", data, "Ocupado", "azul" );
-//        
+    Piloto piloto = new Piloto(1,"Andrienele","12354","c2",new Date(),"bebada",new Moto
+        (1,"pfalgumacoisa","bizzzz","preta com rastha"));
+    
+    
         conexaoHibernate.cadastrar(piloto);
 
 
