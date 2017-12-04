@@ -1,37 +1,42 @@
 package model;
 
-import javafx.util.Duration;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class  Corrida {
 
 @Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
 private int Id;
-@Column
+@OneToOne
+@JoinColumn(name = "cod_passageiro", referencedColumnName = "id_passageiro")
 private Passageiro passageiro;
-@Column
+@OneToOne
+@JoinColumn(name = "cod_piloto",referencedColumnName = "id_piloto")
 private Piloto piloto;
-@Column 
+@OneToOne 
+@JoinColumn(name = "cod_moto", referencedColumnName = "id_moto")
 private Moto moto;
 @Column
 private double valor;
-@Column
-private Duration duracao;
+
        
 public Corrida(){
     
 }
 
-    public Corrida(int Id, Passageiro passageiro, Piloto piloto, Moto moto, double valor, Duration duracao) {
-        this.Id = Id;
+    public Corrida(Passageiro passageiro, Piloto piloto, Moto moto, double valor) {
         this.passageiro = passageiro;
         this.piloto = piloto;
         this.moto = moto;
         this.valor = valor;
-        this.duracao = duracao;
+       
     }
 
     public int getId() {
@@ -73,15 +78,6 @@ public Corrida(){
     public void setValor(double valor) {
         this.valor = valor;
     }
-
-    public Duration getDuracao() {
-        return duracao;
-    }
-
-    public void setDuracao(Duration duracao) {
-        this.duracao = duracao;
-    }
-
 
 
 

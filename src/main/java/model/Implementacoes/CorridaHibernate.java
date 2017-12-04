@@ -1,6 +1,6 @@
-package controller;
+package model.Implementacoes;
 
-import InterfaceDao.CorridaInterface;
+import model.interfaces.CorridaInterface;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -42,7 +42,8 @@ public class CorridaHibernate  implements CorridaInterface{
            session.persist(corrida);
            t.commit();
        }catch(Exception cadastroCorridaErro){
-           System.out.println("Algo de errado não está certo");
+           System.out.println( cadastroCorridaErro.getCause()
+                   + "\nAlgo de errado não está certo ao cadastrar corrida");
            t.rollback();
        }finally{
            session.close();
@@ -70,7 +71,7 @@ public class CorridaHibernate  implements CorridaInterface{
         try{
             return(Corrida) session.getSession().createQuery("from corrida where codigo=" + codigo).getResultList().get(0);
         }catch(Exception recuperaCorridaErro){
-            System.out.println("Algo de errado não está certo");
+            System.out.println("Algo de errado não está certo ao recuperar corrida");
             
         }finally{
             session.close();
@@ -88,7 +89,7 @@ public class CorridaHibernate  implements CorridaInterface{
            session.delete(corrida);
            t.commit();
        }catch(Exception cadastroCorridaErro){
-           System.out.println("Algo de errado não está certo");
+           System.out.println("Algo de errado não está certo ao deletar corrida");
            t.rollback();
        }finally{
            session.close();
@@ -101,7 +102,7 @@ public class CorridaHibernate  implements CorridaInterface{
       try{
           lista = session.createQuery("from corida").list();
       }catch(Exception listaTodasCorridasErro){
-          System.out.println("Algo de errado não esta certo");
+          System.out.println("Algo de errado não esta certo ao listar corrida");
       }finally{
           session.close();
       }

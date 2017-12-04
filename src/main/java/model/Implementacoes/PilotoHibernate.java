@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package model.Implementacoes;
 
+import model.interfaces.PilotoInterface;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import model.Piloto;
-import InterfaceDao.PilotoInterface;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -47,7 +47,8 @@ public class PilotoHibernate implements PilotoInterface {
            session.persist(piloto);
            t.commit();
        }catch(Exception cadastroPilotoErro){
-           System.out.println("Algo de errado não está certo");
+           System.out.println("Algo de errado não está certo ao cadastrar piloto");
+           
            t.rollback();
        }finally{
            session.close();
@@ -77,7 +78,7 @@ public class PilotoHibernate implements PilotoInterface {
         try{
             return(Piloto) session.getSession().createQuery("from Piloto where codigo=" + codigo).getResultList().get(0);
         }catch(Exception recuperaPilotoErro){
-            System.out.println("Algo de errado não está certo");
+            System.out.println("Algo de errado não está certo ao recuperar piloto");
             
         }finally{
             session.close();
@@ -94,7 +95,7 @@ public class PilotoHibernate implements PilotoInterface {
            session.delete(piloto);
            t.commit();
        }catch(Exception cadastroPilotoErro){
-           System.out.println("Algo de errado não está certo");
+           System.out.println("Algo de errado não está certo ao deletar piloto");
            t.rollback();
        }finally{
            session.close();
@@ -108,7 +109,7 @@ public class PilotoHibernate implements PilotoInterface {
       try{
           lista = session.createQuery("from piloto").list();
       }catch(Exception listaTodosPilotosErro){
-          System.out.println("Algo de errado não esta certo");
+          System.out.println("Algo de errado não esta certo ao listar pilotos");
       }finally{
           session.close();
       }

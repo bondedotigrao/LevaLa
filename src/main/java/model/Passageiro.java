@@ -2,12 +2,15 @@ package model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Passageiro {
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id_passageiro;
     @Column
     private String nome;
     @Column(length = 11)
@@ -18,22 +21,21 @@ public class Passageiro {
     public Passageiro(){
         
     }
-
-    public Passageiro(int id, String nome, String cpf, String local) {
-        this.id = id;
+    public Passageiro(String nome, String cpf, String local) {
         this.nome = nome;
         this.cpf = cpf;
         this.local = local;
     }
 
-    public int getId() {
-        return id;
+    public int getId_passageiro() {
+        return id_passageiro;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_passageiro(int id_passageiro) {
+        this.id_passageiro = id_passageiro;
     }
-
+    
+  
     public String getNome() {
         return nome;
     }

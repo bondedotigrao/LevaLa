@@ -1,11 +1,11 @@
 
-package controller;
+package model.Implementacoes;
 
+import model.interfaces.MotoInterface;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import model.Moto;
-import InterfaceDao.MotoInterface;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -43,7 +43,7 @@ public class MotoHibernate implements MotoInterface {
            session.persist(moto);
            t.commit();
        }catch(Exception cadastroMotoErro){
-           System.out.println("Algo de errado não está certo");
+           System.out.println("Algo de errado não está certo ao cadastrar moto");
            t.rollback();
        }finally{
            session.close();
@@ -73,7 +73,7 @@ public class MotoHibernate implements MotoInterface {
         try{
             return(Moto) session.getSession().createQuery("from Moto where codigo=" + codigo).getResultList().get(0);
         }catch(Exception recuperaMotoErro){
-            System.out.println("Algo de errado não está certo");
+            System.out.println("Algo de errado não está certo ao recuperar moto");
             
         }finally{
             session.close();
@@ -90,7 +90,7 @@ public class MotoHibernate implements MotoInterface {
            session.delete(moto);
            t.commit();
        }catch(Exception cadastroMotoErro){
-           System.out.println("Algo de errado não está certo");
+           System.out.println("Algo de errado não está certo ao deletar passageiro");
            t.rollback();
        }finally{
            session.close();
@@ -104,7 +104,7 @@ public class MotoHibernate implements MotoInterface {
       try{
           lista = session.createQuery("from moto").list();
       }catch(Exception listaTodasMotosErro){
-          System.out.println("Algo de errado não esta certo");
+          System.out.println("Algo de errado não esta certo ao listar moto");
       }finally{
           session.close();
       }

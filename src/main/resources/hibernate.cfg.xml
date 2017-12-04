@@ -46,12 +46,10 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/Pi</property>
     <property name="hibernate.connection.username">postgres</property>
     <property name="hibernate.connection.password">arroz</property>
-    <property name="hibernate.hbm2ddl.auto">create</property>
-    
-<mapping class="model.Moto"/>
-<mapping class="model.Passageiro"/>
-<mapping class="model.Corrida"/>
-<mapping class="model.Piloto"/>
-
+    <property name="hibernate.show_sql">true</property>
+    <mapping class="model.Passageiro"/>
+    <mapping class="model.Moto"/>
+    <mapping class="model.Piloto"/>
+    <mapping class="model.Corrida"/>
   </session-factory>
 </hibernate-configuration>

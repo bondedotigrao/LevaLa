@@ -1,4 +1,4 @@
-package InterfaceDao;
+package model.interfaces;
 
 import model.Corrida;
 

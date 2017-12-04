@@ -1,11 +1,11 @@
 
-package controller;
+package model.Implementacoes;
 
+import model.interfaces.PassageiroInterface;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import model.Passageiro;
-import InterfaceDao.PassageiroInterface;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -41,7 +41,7 @@ public class PassageiroHibernate implements PassageiroInterface {
            session.persist(passageiro);
            t.commit();
        }catch(Exception cadastroPassageiroErro){
-           System.out.println("Algo de errado não está certo");
+           System.out.println("Algo de errado não está certo ao cadastrar passageiro");
            t.rollback();
        }finally{
            session.close();
@@ -69,9 +69,9 @@ public class PassageiroHibernate implements PassageiroInterface {
         Session session = this.sessions.openSession();
         
         try{
-            return(Passageiro) session.getSession().createQuery("from Passageiro where codigo=" + codigo).getResultList().get(0);
+            return(Passageiro) session.getSession().createQuery("from Passageiro where id_passageiro=" + codigo).getResultList().get(0);
         }catch(Exception recuperaPassageiroErro){
-            System.out.println("Algo de errado não está certo");
+            System.out.println("Algo de errado não está certo ao recuperar passageiro");
             
         }finally{
             session.close();
@@ -88,7 +88,7 @@ public class PassageiroHibernate implements PassageiroInterface {
            session.delete(passageiro);
            t.commit();
        }catch(Exception cadastroPassageiroErro){
-           System.out.println("Algo de errado não está certo");
+           System.out.println("Algo de errado não está certo ao deletar passageiro");
            t.rollback();
        }finally{
            session.close();
@@ -103,7 +103,7 @@ public class PassageiroHibernate implements PassageiroInterface {
       try{
           lista = session.createQuery("from passageiro").list();
       }catch(Exception listaTodosPassageirosErro){
-          System.out.println("Algo de errado não esta certo");
+          System.out.println("Algo de errado não esta certo ao listar passageiro");
       }finally{
           session.close();
       }

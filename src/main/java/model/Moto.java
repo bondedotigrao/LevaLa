@@ -5,8 +5,13 @@
  */
 package model;
 
+import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -14,9 +19,13 @@ import javax.persistence.Id;
  * @author Adrielly Sales
  */
 @Entity
-public class Moto {
+@ManagedBean (name = "moto")
+@SessionScoped
+public class Moto implements Serializable {
+    
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id_moto;
     @Column
     private String placa;
     @Column
@@ -29,19 +38,18 @@ public class Moto {
         
     }
 
-    public Moto(int id, String placa, String modelo, String cor) {
-        this.id = id;
+    public Moto( String placa, String modelo, String cor) {
         this.placa = placa;
         this.modelo = modelo;
         this.cor = cor;
     }
 
-    public int getId() {
-        return id;
+    public int getIdMoto() {
+        return id_moto;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdMoto(int idMoto) {
+        this.id_moto = id_moto;
     }
 
     public String getPlaca() {
@@ -67,6 +75,5 @@ public class Moto {
     public void setCor(String cor) {
         this.cor = cor;
     }
-    
     
 }

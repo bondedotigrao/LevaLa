@@ -1,31 +1,40 @@
-
 package view;
 
-import controller.PilotoHibernate;
+import model.Implementacoes.CorridaHibernate;
+import model.Implementacoes.MotoHibernate;
+import model.Implementacoes.PassageiroHibernate;
+import model.Implementacoes.PilotoHibernate;
 import java.util.Date;
+import model.Corrida;
 import model.Moto;
+import model.Passageiro;
 import model.Piloto;
 
 public class testeMain {
-    public static void main(String args[]){
-//        PassageiroHibernate conexaoHibernate = new PassageiroHibernate();
-//        
-//        Passageiro passageiro = new Passageiro(1,"mona","1223","c2");
-//        
-//        conexaoHibernate.cadastrar(passageiro);
 
-        
-      PilotoHibernate conexaoHibernate = new PilotoHibernate();
-//        
+    public static void main(String args[]) {
 
-//        
-    Piloto piloto = new Piloto(1,"Andrienele","12354","c2",new Date(),"bebada",new Moto
-        (1,"pfalgumacoisa","bizzzz","preta com rastha"));
-    
-    
-        conexaoHibernate.cadastrar(piloto);
+        MotoHibernate motoH = new MotoHibernate();
+        Moto moto = new Moto("arroz", "Biz", "Rosa");
+        //   motoH.cadastrar(moto);
+
+        PilotoHibernate pilotoH = new PilotoHibernate();
+        Piloto piloto = new Piloto("Arnaldo", "54022", "jupi", new Date(), "ocupado", moto);
+        //    pilotoH.cadastrar(piloto);
+//                         
+//             
+        PassageiroHibernate passageiroH = new PassageiroHibernate();
+        Passageiro p;
+        Passageiro passageiro = new Passageiro("gdfgd","er","vcxvxvxv");
+//        passageiroH.cadastrar(passageiro);
+//        p = passageiroH.recuperar(5);
+//        passageiroH.deletar(p);
 
 
+
+        CorridaHibernate CorridaH = new CorridaHibernate();
+        Corrida corrida = new Corrida(passageiro, piloto, moto, 5);
+          CorridaH.cadastrar(corrida);   
 
     }
 }
